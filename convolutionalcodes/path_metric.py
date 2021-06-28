@@ -42,6 +42,13 @@ class PMU(Elaboratable):
 
         If None, defaults to 3 + width + int(k/2)
 
+    minimum_lsb: int, optional
+        If normalisation is enabled, this value specifies the lsb to use for
+        path metric normalisation. All less significant bits are truncated and
+        not used in the normalisation process. Must be less than the `pm_width`
+
+        If normalisation is disabled then this value has no effect.
+
     verbose: bool, optional
         Print useful debugging information during instantiation and elaboration
 
@@ -60,6 +67,7 @@ class PMU(Elaboratable):
         k=3,
         normalise=None,
         pm_width=None,
+        minimum_lsb=4,
         verbose=True,
     ):
         self.bm = bm
@@ -80,9 +88,14 @@ class PMU(Elaboratable):
 
         self._k = k
         self._normalise = normalise
+        self._verbose = verbose
+
+        self._minimum_lsb = minimum_lsb
         self._pm_width = pm_width
         self._pm_max = (2 ** pm_width) - 1
-        self._verbose = verbose
+        assert (
+            minimum_lsb < pm_width
+        ), "Minimum LSB must be less than the PM width itself"
 
         self.local_winners = Signal(2 ** (k - 1))
 
@@ -170,7 +183,7 @@ class PMU(Elaboratable):
                 # Find minimum path metric: Registered PM
                 m.submodules.comb_min = comb_min = CombinatorialMinimum(
                     pm_reg,
-                    lsb=4,
+                    lsb=self._minimum_lsb,
                 )
 
                 # [] <- pm_acs_out
@@ -195,7 +208,7 @@ class PMU(Elaboratable):
                 # Find minimum path metric: Butterfly output
                 m.submodules.comb_min = comb_min = CombinatorialMinimum(
                     pm_acs_out,
-                    lsb=4,
+                    lsb=self._minimum_lsb,
                 )
 
                 # Register normalised path metrics

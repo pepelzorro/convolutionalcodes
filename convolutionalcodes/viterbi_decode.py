@@ -66,6 +66,21 @@ class ViterbiDecode(Elaboratable):
         only on NOT(bm_valid). The bm_valid signal must be de-asserted regularly
         to perform path normalisation.
 
+    pm_width: int, optional
+        Register width used for path metric values.
+
+        If None, defaults to 3 + width + int(k/2)
+
+    minimum_lsb: int, optional
+        If normalisation is enabled, this value specifies the lsb to use for
+        path metric normalisation. All less significant bits are truncated and
+        not used in the normalisation process. Must be less than the `pm_width`
+
+        If normalisation is disabled then this value has no effect.
+
+    tb_length : int, optional
+        Traceback buffer length. The recommended length is at least 5*k
+
     tb_domain : str, optional
         Domain to use for the traceback output. Defaults to "sync_tb".
 
@@ -87,6 +102,9 @@ class ViterbiDecode(Elaboratable):
         input_valid=None,
         register_bm=True,
         normalise=None,
+        pm_width=None,
+        minimum_lsb=4,
+        tb_length=64,
         tb_domain="sync_tb",
         verbose=True,
     ):
@@ -129,6 +147,8 @@ class ViterbiDecode(Elaboratable):
             self.input_valid_reg,
             k=k,
             normalise=normalise,
+            pm_width=pm_width,
+            minimum_lsb=minimum_lsb,
             verbose=verbose,
         )
         self.traceback = Traceback(
@@ -137,7 +157,7 @@ class ViterbiDecode(Elaboratable):
             data,
             data_valid,
             k=k,
-            tb_length=64,  # TODO
+            tb_length=tb_length,
             tb_domain=tb_domain,
             verbose=verbose,
         )
