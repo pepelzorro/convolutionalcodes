@@ -1,7 +1,7 @@
 # Building blocks for convolutional codes in nmigen
 
 This repository contains implementations for convolutional encoders and decoders
-in nmigen. There is an (albeit trivial) encoder, and a viterbi decoder.
+in nmigen. There is an (albeit trivial) encoder, and a r=1/2 viterbi decoder.
 
 ## Getting started.
 
@@ -27,6 +27,8 @@ Performance plots can be found in a jupyter notebook:
 
 - [Viterbi-BER](notebooks/Viterbi-BER.ipynb) - Viterbi decoding with hard and
   soft symbols
+
+![Block Diagram of r=1/2 Viterbi Decoder](notebooks/r2_viterbi.png)
 
 ## Running tests
 

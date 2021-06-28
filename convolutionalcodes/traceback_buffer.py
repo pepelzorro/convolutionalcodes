@@ -4,7 +4,6 @@ from nmigen.sim import Simulator, Active
 
 import numpy as np
 
-from decimal import Decimal
 from .util.test import *
 from functools import partial
 

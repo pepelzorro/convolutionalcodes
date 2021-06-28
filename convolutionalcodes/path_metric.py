@@ -244,7 +244,7 @@ class PMUTest(TestCase):
             "0101010101010101010101010101010101010101010101010101010101010101",
             2,
         )
-        # Expected result for low branches
+        # Expected result for high branches
         maximum_winners = 2 ** (2 ** (self._k - 1)) - 1
 
         print(f"test k={self._k}")
