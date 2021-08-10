@@ -12,6 +12,9 @@ class ConvolutionalCoder(Elaboratable):
     data: Signal(), in
         Input data
 
+    data_valid: Signal(), in, optional
+        Input data is valid
+
     k : int
         Constraint length
 
@@ -31,9 +34,11 @@ class ConvolutionalCoder(Elaboratable):
 
     """
 
-    def __init__(self, data, k=3, g1=0b111, g2=0b101):
+    def __init__(self, data, data_valid=Const(1), k=3, g1=0b111, g2=0b101):
         self.data = data
+        self.data_valid = data_valid
         assert data.width == 1
+        assert data_valid.width == 1
 
         if type(g1) == int:
             g1 = Const(g1, k)
@@ -61,7 +66,8 @@ class ConvolutionalCoder(Elaboratable):
         state = Signal(k)
 
         m.d.comb += state.eq(Cat(reg, self.data))
-        m.d.sync += reg.eq(state[1:])
+        with m.If(self.data_valid):
+            m.d.sync += reg.eq(state[1:])
 
         # G1 G2
         c1 = Signal()
