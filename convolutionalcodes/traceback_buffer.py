@@ -1,6 +1,6 @@
-from nmigen import *
-from nmigen.lib.cdc import *
-from nmigen.sim import Simulator, Active
+from amaranth import *
+from amaranth.lib.cdc import *
+from amaranth.sim import Simulator, Active
 
 import numpy as np
 

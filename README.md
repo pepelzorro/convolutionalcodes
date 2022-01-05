@@ -1,15 +1,15 @@
-# Building blocks for convolutional codes in nmigen
+# Building blocks for convolutional codes in [[Amaranth HDL]]
 
 This repository contains implementations for convolutional encoders and decoders
-in nmigen. There is an (albeit trivial) encoder, and a r=1/2 viterbi decoder.
+in [[Amaranth HDL]]. There is an (albeit trivial) encoder, and a r=1/2 viterbi
+decoder.
 
 ## Getting started.
 
 Install dependencies (in a python3 virtual environment)
 
 ```
-pip install numpy scipy jupyterlab matplotlib
-pip install git+https://github.com/nmigen/nmigen
+pip install numpy scipy jupyterlab matplotlib amaranth
 ```
 
 To install an editable version of this repository for development, use:
@@ -55,3 +55,5 @@ python -m convolutionalcodes.viterbi_decode -k cxx -v
 ## License
 
 [2-Clause BSD License](LICENSE)
+
+[Amaranth HDL]: https://github.com/amaranth-lang/amaranth

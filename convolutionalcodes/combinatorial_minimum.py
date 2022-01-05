@@ -1,5 +1,5 @@
-from nmigen import *
-from nmigen.sim import Simulator, Active
+from amaranth import *
+from amaranth.sim import Simulator, Active
 
 from .util.test import *
 from functools import partial

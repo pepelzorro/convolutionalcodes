@@ -11,9 +11,9 @@ setup(
     version="0.0.1",
     author="Pep Zorro",
     author_email="pepelzorro@example.com",
-    description=("Convolutional codes for nMigen"),
+    description=("Convolutional codes for Amaranth HDL"),
     license="BSD-2-Clause",
-    keywords="nmigen radio viterbi convolutional",
+    keywords="amaranth radio viterbi convolutional",
     packages=["convolutionalcodes"],
     long_description=read("README.md"),
 )

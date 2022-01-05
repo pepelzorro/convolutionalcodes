@@ -6,8 +6,8 @@ import unittest
 
 from functools import wraps
 
-from nmigen import Signal, Module
-from nmigen.sim import Simulator
+from amaranth import Signal, Module
+from amaranth.sim import Simulator
 
 
 def sync_test_case(process_function, *args, vcd_suffix="", **kwargs):

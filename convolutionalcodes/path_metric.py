@@ -1,5 +1,5 @@
-from nmigen import *
-from nmigen.sim import Simulator, Active
+from amaranth import *
+from amaranth.sim import Simulator, Active
 
 from .add_compare_select import ACSU
 from .combinatorial_minimum import CombinatorialMinimum

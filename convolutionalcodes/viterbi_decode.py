@@ -1,6 +1,6 @@
-from nmigen import *
-from nmigen.sim import Simulator, Active
-from nmigen.back import cxxrtl
+from amaranth import *
+from amaranth.sim import Simulator, Active
+from amaranth.back import cxxrtl
 
 from .branch_metric import BMU
 from .path_metric import PMU
