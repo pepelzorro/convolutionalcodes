@@ -15,5 +15,7 @@ setup(
     license="BSD-2-Clause",
     keywords="amaranth radio viterbi convolutional",
     packages=["convolutionalcodes"],
+    package_data={"": ["util/__init__.py", "util/test.py"]},
+    install_requires=["amaranth"],
     long_description=read("README.md"),
 )
